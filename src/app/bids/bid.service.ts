@@ -138,6 +138,15 @@ export class BidService {
 
   }
 
+  // just to update every data in the document
+  async updateAllBids() {
+    return await this.bidModel.updateMany(
+        {},
+        { $set: { paymentStatus: false } }
+    );
+
+  }
+
   async delete(id: string, influencerId: string) {
     
     const bid = await this.bidNotFoundOrExpired(id, influencerId);

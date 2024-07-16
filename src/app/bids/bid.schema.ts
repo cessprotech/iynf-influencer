@@ -62,6 +62,9 @@ export class Bid extends Document {
     })
   readonly status: string;
 
+  @Prop({ required: false, default: false })
+  readonly paymentStatus: boolean;
+
 }
 
 const BidModelName = Bid.name;
