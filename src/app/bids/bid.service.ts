@@ -140,10 +140,11 @@ export class BidService {
 
   // just to update every data in the document
   async updateAllBids() {
-    return await this.bidModel.updateMany(
-        {},
-        { $set: { paymentStatus: false } }
-    );
+    return await this.bidModel.findOneAndUpdate({ _id: '664fad059ff780ac169f4ce7' }, 
+      { paymentStatus: true }, {
+      new: true,
+      runValidators: true
+    })
 
   }
 
