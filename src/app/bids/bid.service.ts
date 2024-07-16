@@ -138,15 +138,15 @@ export class BidService {
 
   }
 
-  // just to update every data in the document
-  async updateAllBids() {
-    return await this.bidModel.findOneAndUpdate({ _id: '664fad059ff780ac169f4ce7' }, 
-      { paymentStatus: true }, {
-      new: true,
-      runValidators: true
-    })
+  // just to update every data in the document by chibyke
+  // async updateAllBids() {
+  //   return await this.bidModel.findOneAndUpdate({ _id: '664fad059ff780ac169f4ce7' }, 
+  //     { paymentStatus: true }, {
+  //     new: true,
+  //     runValidators: true
+  //   })
 
-  }
+  // }
 
   async delete(id: string, influencerId: string) {
     

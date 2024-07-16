@@ -51,10 +51,11 @@ export class BidController {
     return this.bidService.getOne(id, populate);
   }
 
-  @Public()
-  @Patch('updateall')
-  @Response(BID_RESPONSE.FIND_ONE_BY_ID)
-  updateAllBids() {
-    return this.bidService.updateAllBids();
-  }
+  // just to update every data in the document by chibyke
+  // @Public()
+  // @Patch('updateall')
+  // @Response(BID_RESPONSE.FIND_ONE_BY_ID)
+  // updateAllBids() {
+  //   return this.bidService.updateAllBids();
+  // }
 }
