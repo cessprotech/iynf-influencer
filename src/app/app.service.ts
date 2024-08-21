@@ -3,7 +3,7 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 import { BadRequestException, ForbiddenException, Inject, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { CreateInfluencerDto, CreateJobRequestDto, UpdateInfluencerDto } from './app.dto';
-import { Influencer, InfluencerModelInterface } from './app.schema';
+import { Influencer, InfluencerModelInterface, Review, ReviewModelName } from './app.schema';
 import { addDays } from 'date-fns';
 import { DeepRequired } from 'ts-essentials';
 import { INFLUENCER_RESPONSE } from './app.response';
@@ -23,6 +23,8 @@ export class AppService {
   constructor(
     @InjectConnection() private readonly connection: Connection,
     @InjectModel(Influencer.name) public readonly influencerModel: InfluencerModelInterface,
+    
+    @InjectModel(ReviewModelName) public readonly reviewModel: Model<Review>,
 
     @InjectModel(JobRequest.name) public readonly jobRequestModel: JobRequestModelInterface,
     
@@ -65,7 +67,6 @@ export class AppService {
 
     const {page, limit, select, sort, ...rest} = query;
 
-    console.log(query, 'ggggggg');
     return await AppPipeline(this.influencerModel).getAll({ ...rest, suspended: false }, paginateOptions);
   }
   
@@ -132,5 +133,33 @@ export class AppService {
   remove(id: string) {
     
     return `This action removes a #${id} influencer`;
+  }
+
+
+  async postReview(createReview: any) {
+    try {
+      const review =  await this.reviewModel.create(createReview);     
+      return { message: 'review added', review }
+
+    } catch (error) {
+
+      console.log(error.message);
+
+      throw new InternalServerErrorException('Error occured while trying to create a review! Try again later.');
+    }
+  }
+  
+  async getReview(jobid: string) {
+
+    const review = await this.reviewModel.findById(jobid)
+      .populate('creator')
+      .populate('influencer')
+      .exec();
+    
+    if (!review) {
+      return { message: 'Review not found' };
+    }
+
+    return review;
   }
 }

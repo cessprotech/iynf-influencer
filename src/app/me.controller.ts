@@ -136,4 +136,18 @@ export class MeController {
   async declineJobRequest(@Param('id') id, @Req() req) {
     return await this.jobRequestService.declineJobRequest(id);
   }
+
+  @Post(`jobs/postreview`)
+  @Iam()
+  @Response(INFLUENCER_RESPONSE.DEFAULT)
+  async postReview(@Param('id') id, @Body() body) {
+    return await this.appService.postReview(body);
+  }
+
+  @Get(`jobs/reviews/:jobid`)
+  @Iam()
+  @Response(INFLUENCER_RESPONSE.DEFAULT)
+  async getReview(@Param('jobid') jobid) {
+    return await this.appService.getReview(jobid);
+  }
 }
