@@ -140,7 +140,7 @@ export class MeController {
   @Post(`jobs/postreview`)
   @Iam()
   @Response(INFLUENCER_RESPONSE.DEFAULT)
-  async postReview(@Param('id') id, @Body() body) {
+  async postReview(@Body() body) {
     return await this.appService.postReview(body);
   }
 
@@ -149,5 +149,12 @@ export class MeController {
   @Response(INFLUENCER_RESPONSE.DEFAULT)
   async getReview(@Param('jobid') jobid) {
     return await this.appService.getReview(jobid);
+  }
+
+  @Patch(`jobs/review/:reviewid`)
+  @Iam()
+  @Response(INFLUENCER_RESPONSE.DEFAULT)
+  async editReview(@Param('reviewid') reviewId, @Body() body) {
+    return await this.appService.editReview(reviewId, body);
   }
 }

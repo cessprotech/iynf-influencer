@@ -162,4 +162,13 @@ export class AppService {
 
     return review;
   }
+
+  async editReview(reviewId: string, reviewDto: any) {
+
+    return await this.reviewModel.findOneAndUpdate({ _id: reviewId }, { ...reviewDto }, {
+      new: true,
+      runValidators: true
+    })
+
+  }
 }
