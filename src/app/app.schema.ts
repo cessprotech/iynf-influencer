@@ -118,6 +118,13 @@ ReviewSchema.virtual('influencer', {
   justOne: true
 });
 
+ReviewSchema.virtual('job', {
+  ref: "Job",
+  localField: 'jobId',
+  foreignField: 'jobId',
+  justOne: true
+});
+
 
 const ReviewModel = { name: ReviewModelName, schema: ReviewSchema };
 
