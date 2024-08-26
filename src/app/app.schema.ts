@@ -109,9 +109,6 @@ ReviewSchema.virtual('influencer', {
   localField: 'influencerId',
   foreignField: 'influencerId',
   justOne: true,
-  options: {
-    populate: [{ path: 'user' }]
-  }
 });
 
 ReviewSchema.virtual('creator', {
@@ -119,9 +116,6 @@ ReviewSchema.virtual('creator', {
   localField: 'creatorId',
   foreignField: 'creatorId',
   justOne: true,
-  options: {
-    populate: [{ path: 'user' }]
-  }
 });
 
 // ReviewSchema.virtual('creator', {

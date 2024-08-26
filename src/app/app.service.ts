@@ -154,6 +154,8 @@ export class AppService {
 
     const review = await this.reviewModel.findOne({ jobId: jobid })
     .populate(populateOptions)
+    .populate({ path: 'creator', populate: { path: 'user' } })
+    .populate({ path: 'influencer', populate: { path: 'user' } })
     .exec();
     
     if (!review) {
