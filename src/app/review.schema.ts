@@ -31,7 +31,7 @@ const ReviewModelName = Review.name;
 const ReviewSchema = CREATE_SCHEMA<Review>(Review);
 
 ReviewSchema.virtual('influencer', {
-    ref: "Influencer",
+    ref: "User",
     localField: 'influencerId',
     foreignField: 'influencerId',
     justOne: true,
@@ -41,7 +41,7 @@ ReviewSchema.virtual('influencer', {
 });
 
 ReviewSchema.virtual('creator', {
-    ref: "Creator",
+    ref: "User",
     localField: 'creatorId',
     foreignField: 'creatorId',
     justOne: true,
@@ -50,15 +50,6 @@ ReviewSchema.virtual('creator', {
     }
 });
   
-  
-// ReviewSchema.virtual('creator', {
-//     ref: "Creator",
-//     localField: 'creatorId',
-//     foreignField: 'creatorId',
-//     justOne: true,
-// });
-  
-
 ReviewSchema.virtual('job', {
   ref: "Job",
   localField: 'jobId',
