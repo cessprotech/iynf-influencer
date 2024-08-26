@@ -34,20 +34,14 @@ ReviewSchema.virtual('influencer', {
     ref: "User",
     localField: 'influencerId',
     foreignField: 'influencerId',
-    justOne: true,
-    options: {
-      populate: [{ path: 'user' }]
-    }
+    justOne: true
 });
 
 ReviewSchema.virtual('creator', {
     ref: "User",
     localField: 'creatorId',
     foreignField: 'creatorId',
-    justOne: true,
-    options: {
-      populate: [{ path: 'user' }]
-    }
+    justOne: true
 });
   
 ReviewSchema.virtual('job', {
