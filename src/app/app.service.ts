@@ -3,7 +3,7 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 import { BadRequestException, ForbiddenException, Inject, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { CreateInfluencerDto, CreateJobRequestDto, UpdateInfluencerDto } from './app.dto';
-import { Influencer, InfluencerModelInterface, Review, reviewModelInterface } from './app.schema';
+import { Influencer, InfluencerModelInterface, Review, ReviewModelName } from './app.schema';
 import { addDays } from 'date-fns';
 import { DeepRequired } from 'ts-essentials';
 import { INFLUENCER_RESPONSE } from './app.response';
@@ -24,7 +24,7 @@ export class AppService {
     @InjectConnection() private readonly connection: Connection,
     @InjectModel(Influencer.name) public readonly influencerModel: InfluencerModelInterface,
     
-    @InjectModel(Review.name) public readonly reviewModel: reviewModelInterface,
+    @InjectModel(ReviewModelName) public readonly reviewModel: Model<Review>,
 
     @InjectModel(JobRequest.name) public readonly jobRequestModel: JobRequestModelInterface,
     
@@ -153,7 +153,8 @@ export class AppService {
   async getReview(jobid: string,  populateOptions: PopulateOptions = []) {
 
     const review = await this.reviewModel.findOne({ jobId: jobid })
-    .populate(populateOptions);
+    .populate(populateOptions)
+    .exec();
     
     if (!review) {
       return { message: 'Review not found' };
