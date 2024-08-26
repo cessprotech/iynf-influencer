@@ -171,4 +171,10 @@ export class AppService {
     })
 
   }
+
+  async deleteReview() {
+
+    return await await this.reviewModel.deleteMany({});
+
+  }
 }

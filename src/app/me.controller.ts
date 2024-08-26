@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, ForbiddenException, Get, Inject, NotFoundException, Param, Patch, Post, Query, Req, UseFilters, UsePipes } from '@nestjs/common';
+import { BadRequestException, Body, Controller, ForbiddenException, Get, Inject, NotFoundException, Param, Patch, Post, Delete, Query, Req, UseFilters, UsePipes } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Response } from '@core/common/interceptors/response';
 import { HttpValidationFilter, MongooseExceptionFilter } from '@core/common/filters';
@@ -156,5 +156,12 @@ export class MeController {
   @Response(INFLUENCER_RESPONSE.DEFAULT)
   async editReview(@Param('reviewid') reviewId, @Body() body) {
     return await this.appService.editReview(reviewId, body);
+  }
+  
+  @Delete(`jobs/review`)
+  @Iam()
+  @Response(INFLUENCER_RESPONSE.DEFAULT)
+  async deleteReview() {
+    return await this.appService.deleteReview();
   }
 }
