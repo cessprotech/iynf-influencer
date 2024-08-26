@@ -139,7 +139,6 @@ export class MeController {
 
   @Post(`jobs/postreview`)
   @Iam()
-  @Response(INFLUENCER_RESPONSE.DEFAULT)
   async postReview(@Body() body) {
     return await this.appService.postReview(body);
   }

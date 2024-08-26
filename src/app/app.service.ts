@@ -138,7 +138,9 @@ export class AppService {
 
   async postReview(createReview: any) {
     try {
-      const review =  await this.reviewModel.create(createReview);     
+      const review =  await this.reviewModel.create(createReview);  
+      console.log(createReview);
+         
       return { message: 'review added', review }
 
     } catch (error) {
