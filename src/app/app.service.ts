@@ -152,7 +152,6 @@ export class AppService {
   }
   
   async getReview(jobid: string, populateOptions: PopulateOptions = []) {
-console.log(populateOptions);
 
     const review = await this.reviewModel.findOne({ jobId: jobid })
     .populate(populateOptions);
