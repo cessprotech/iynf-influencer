@@ -139,7 +139,7 @@ export class AppService {
   async postReview(createReview: any) {
     try {
       const review =  await this.reviewModel.create(createReview);  
-      console.log(createReview);
+      console.log(review);
          
       return { message: 'review added', review }
 
@@ -153,7 +153,7 @@ export class AppService {
   
   async getReview(jobid: string) {
 
-    const review = await this.reviewModel.findById(jobid)
+    const review = await this.reviewModel.findOne({ jobId: jobid })
       .populate('creator')
       .populate('influencer')
       .exec();
