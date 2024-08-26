@@ -154,8 +154,8 @@ export class AppService {
   async getReview(jobid: string) {
 
     const review = await this.reviewModel.findOne({ jobId: jobid })
-    .populate({ path: 'creator', populate: { path: 'user' } })
-    .populate({ path: 'influencer', populate: { path: 'user' } })
+    .populate({ path: 'creator' })
+    .populate({ path: 'influencer' })
     .exec();
     
     if (!review) {
