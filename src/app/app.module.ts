@@ -14,7 +14,7 @@ import { DB_CONNECTION, MODEL_INJECT } from '@core/modules/database';
 import { ShutdownService } from './power.service';
 // import { CachingModule } from '@libs/modules/caching/caching.module';
 import { MicroServicesConfig } from './config.service';
-import { InfluencerModel, ReviewModel } from './app.schema';
+import { InfluencerModel } from './app.schema';
 import { ExternalModels } from './schema/externals.schema';
 import { MeController } from './me.controller';
 import { SentryInterceptor } from '@core/common/interceptors/sentry.interceptor';
@@ -30,6 +30,7 @@ import { JobRequestService } from './services/job-request.service';
 import { JobRequestModel } from './schema/request.schema';
 import { AdminController } from './admin.controller';
 import { AdminService } from './admin.service';
+import { ReviewModel } from './review.schema';
 
 @Module({
   imports: [

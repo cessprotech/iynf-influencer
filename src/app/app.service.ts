@@ -3,7 +3,7 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 import { BadRequestException, ForbiddenException, Inject, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { CreateInfluencerDto, CreateJobRequestDto, UpdateInfluencerDto } from './app.dto';
-import { Influencer, InfluencerModelInterface, Review, ReviewModelName } from './app.schema';
+import { Influencer, InfluencerModelInterface } from './app.schema';
 import { addDays } from 'date-fns';
 import { DeepRequired } from 'ts-essentials';
 import { INFLUENCER_RESPONSE } from './app.response';
@@ -14,6 +14,7 @@ import { ClientProxy } from '@nestjs/microservices';
 import { APP_CONFIG } from './app.constants';
 import { JobRequest, JobRequestModelInterface, JOBREQUEST_STATUS } from './schema/request.schema';
 import { AppPipeline } from './app.pipeline';
+import { Review, ReviewModelName } from './review.schema';
 // import { CachingService } from '@libs/modules/caching';
 
 @Injectable()
