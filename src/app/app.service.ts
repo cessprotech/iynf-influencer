@@ -151,12 +151,10 @@ export class AppService {
     }
   }
   
-  async getReview(jobid: string) {
+  async getReview(jobid: string, populateOptions: PopulateOptions = []) {
 
     const review = await this.reviewModel.findOne({ jobId: jobid })
-    .populate({ path: 'creator' })
-    .populate({ path: 'influencer' })
-    .exec();
+    .populate(populateOptions);
     
     if (!review) {
       return { message: 'Review not found' };
