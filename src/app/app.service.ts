@@ -175,8 +175,8 @@ export class AppService {
   }
 
   async deleteReview() {
-    await this.reviewModel.collection.drop();
-    return { message: 'Reviews collection dropped successfully' };
+
+    return await await this.reviewModel.deleteMany({});
 
   }
 }
