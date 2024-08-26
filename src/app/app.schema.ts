@@ -8,6 +8,9 @@ import { nanoid } from 'nanoid';
 interface InfluencerModelInterface extends Model<Influencer>, PaginateModel<Influencer> {
 }
 
+interface reviewModelInterface extends Model<Review>, PaginateModel<Review> {
+}
+
 export class Social extends Document {
   @Prop({ required: true })
   name: string;
@@ -104,6 +107,10 @@ export class Review extends Document{
 const ReviewModelName = Review.name;
 const ReviewSchema = CREATE_SCHEMA<Review>(Review);
 
+ReviewSchema.index({ creatorId: 1});
+ReviewSchema.index({ influencerId: 1});
+ReviewSchema.index({ jobId: 1});
+
 ReviewSchema.virtual('creator', {
   ref: "User",
   localField: 'creatorId',
@@ -131,4 +138,4 @@ const ReviewModel = { name: ReviewModelName, schema: ReviewSchema };
 const InfluencerModel = { name: InfluencerModelName, schema: InfluencerSchema };
 
 
-export { InfluencerSchema, InfluencerModelName, InfluencerModel, InfluencerModelInterface, ReviewModel, ReviewModelName, ReviewSchema };
+export { InfluencerSchema, InfluencerModelName, InfluencerModel, InfluencerModelInterface, reviewModelInterface, ReviewModel, ReviewModelName, ReviewSchema };
