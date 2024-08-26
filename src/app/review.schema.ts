@@ -38,7 +38,17 @@ ReviewSchema.virtual('influencer', {
     options: {
       populate: [{ path: 'user' }]
     }
-  });
+});
+
+ReviewSchema.virtual('creator', {
+    ref: "Creator",
+    localField: 'creatorId',
+    foreignField: 'creatorId',
+    justOne: true,
+    options: {
+      populate: [{ path: 'user' }]
+    }
+});
   
   
 // ReviewSchema.virtual('creator', {

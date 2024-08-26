@@ -150,6 +150,7 @@ export class MeController {
 
     const populate = [
       { path: 'influencer' },
+      { path: 'creator' },
     ];
 
     return await this.appService.getReview(jobid, populate);
