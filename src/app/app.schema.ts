@@ -89,22 +89,20 @@ InfluencerSchema.pre(/update|updateOne|findOneAndUpdate|findByIdAndUpdate/, asyn
 @Schema({ timestamps: true })
 export class Review extends Document{ 
     @Prop({ required: [true, 'InfluencerId Is Required!'] })
-    readonly influencerId: string;
+    influencerId: string;
 
     @Prop({ required: [true, 'creatorId Is Required!'] })
-    readonly creatorId: string;
+    creatorId: string;
 
     @Prop({ required: [true, 'Jobid Is Required!'] })
-    readonly jobId: string;
+    jobId: string;
 
     @Prop({})
-    readonly proof: [];
+    proof: [];
 }
 
 const ReviewModelName = Review.name;
 const ReviewSchema = CREATE_SCHEMA<Review>(Review);
-
-ReviewSchema.index({ influencerId: 1, creatorId: 1 });
 
 ReviewSchema.virtual('creator', {
   ref: "User",
