@@ -88,13 +88,13 @@ InfluencerSchema.pre(/update|updateOne|findOneAndUpdate|findByIdAndUpdate/, asyn
 
 @Schema({ timestamps: true })
 export class Review extends Document{ 
-    @Prop({ required: [true, 'InfluencerId Is Required!'], unique: true })
+    @Prop({ required: [true, 'InfluencerId Is Required!'] })
     readonly influencerId: string;
 
-    @Prop({ required: [true, 'creatorId Is Required!'], unique: true })
+    @Prop({ required: [true, 'creatorId Is Required!'] })
     readonly creatorId: string;
 
-    @Prop({ required: [true, 'Jobid Is Required!'], unique: true })
+    @Prop({ required: [true, 'Jobid Is Required!'] })
     readonly jobId: string;
 
     @Prop({})
