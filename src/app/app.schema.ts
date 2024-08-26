@@ -85,7 +85,52 @@ InfluencerSchema.pre(/update|updateOne|findOneAndUpdate|findByIdAndUpdate/, asyn
 });
 
 
+
+@Schema({ timestamps: true })
+export class Review extends Document{ 
+    @Prop({ required: [true, 'InfluencerId Is Required!'] })
+    readonly influencerId: string;
+
+    @Prop({ required: [true, 'creatorId Is Required!'] })
+    readonly creatorId: string;
+
+    @Prop({ required: [true, 'Jobid Is Required!'] })
+    readonly jobId: string;
+
+    @Prop({})
+    readonly proof: [];
+}
+
+const ReviewModelName = Review.name;
+const ReviewSchema = CREATE_SCHEMA<Review>(Review);
+
+ReviewSchema.index({ influencerId: 1, creatorId: 1 });
+
+ReviewSchema.virtual('creator', {
+  ref: "User",
+  localField: 'creatorId',
+  foreignField: 'creatorId',
+  justOne: true
+});
+
+ReviewSchema.virtual('influencer', {
+  ref: "User",
+  localField: 'influencerId',
+  foreignField: 'influencerId',
+  justOne: true
+});
+
+ReviewSchema.virtual('job', {
+  ref: "Job",
+  localField: 'jobId',
+  foreignField: 'jobId',
+  justOne: true
+});
+
+
+const ReviewModel = { name: ReviewModelName, schema: ReviewSchema };
+
 const InfluencerModel = { name: InfluencerModelName, schema: InfluencerSchema };
 
 
-export { InfluencerSchema, InfluencerModelName, InfluencerModel, InfluencerModelInterface };
+export { InfluencerSchema, InfluencerModelName, InfluencerModel, InfluencerModelInterface, ReviewModel, ReviewModelName, ReviewSchema };
