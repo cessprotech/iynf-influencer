@@ -146,14 +146,8 @@ export class MeController {
   @Get(`jobs/review/:jobid`)
   @Iam()
   @Response(INFLUENCER_RESPONSE.DEFAULT)
-  async getReview(@Param('jobid') jobid) {    
-
-    const populate = [
-      { path: 'creator' },
-      { path: 'influencer' }
-    ];
-
-    return await this.appService.getReview(jobid, populate);
+  async getReview(@Param('jobid') jobid) { 
+    return await this.appService.getReview(jobid);
   }
 
   @Patch(`jobs/review/:reviewid`)

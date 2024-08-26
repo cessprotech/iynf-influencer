@@ -85,64 +85,7 @@ InfluencerSchema.pre(/update|updateOne|findOneAndUpdate|findByIdAndUpdate/, asyn
 });
 
 
-
-@Schema({ timestamps: true })
-export class Review extends Document{ 
-    @Prop({ required: [true, 'InfluencerId Is Required!'] })
-    influencerId: string;
-
-    @Prop({ required: [true, 'creatorId Is Required!'] })
-    creatorId: string;
-
-    @Prop({ required: [true, 'Jobid Is Required!'] })
-    jobId: string;
-
-    @Prop({})
-    proof: [];
-}
-
-const ReviewModelName = Review.name;
-const ReviewSchema = CREATE_SCHEMA<Review>(Review);
-
-ReviewSchema.virtual('influencer', {
-  ref: "Influencer",
-  localField: 'influencerId',
-  foreignField: 'influencerId',
-  justOne: true,
-});
-
-ReviewSchema.virtual('creator', {
-  ref: "Creator",
-  localField: 'creatorId',
-  foreignField: 'creatorId',
-  justOne: true,
-});
-
-// ReviewSchema.virtual('creator', {
-//   ref: "User",
-//   localField: 'creatorId',
-//   foreignField: 'creatorId',
-//   justOne: true
-// });
-
-// ReviewSchema.virtual('influencer', {
-//   ref: "User",
-//   localField: 'influencerId',
-//   foreignField: 'influencerId',
-//   justOne: true
-// });
-
-ReviewSchema.virtual('job', {
-  ref: "Job",
-  localField: 'jobId',
-  foreignField: 'jobId',
-  justOne: true
-});
-
-
-const ReviewModel = { name: ReviewModelName, schema: ReviewSchema };
-
 const InfluencerModel = { name: InfluencerModelName, schema: InfluencerSchema };
 
 
-export { InfluencerSchema, InfluencerModelName, InfluencerModel, InfluencerModelInterface, ReviewModel, ReviewModelName, ReviewSchema };
+export { InfluencerSchema, InfluencerModelName, InfluencerModel, InfluencerModelInterface };
