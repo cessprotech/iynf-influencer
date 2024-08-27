@@ -52,7 +52,7 @@ export class Influencer extends Document {
   @Prop({
     default: false
   })
-  readonly suspended: boolean;
+  suspended: boolean;
 
   @Prop({
     default: 0
