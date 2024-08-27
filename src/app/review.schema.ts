@@ -30,18 +30,28 @@ export class Review extends Document{
 const ReviewModelName = Review.name;
 const ReviewSchema = CREATE_SCHEMA<Review>(Review);
 
+ReviewSchema.index({ creatorId: 1});
+ReviewSchema.index({ influencerId: 1});
+ReviewSchema.index({ jobId: 1});
+
 ReviewSchema.virtual('influencer', {
-    ref: "User",
+    ref: "Influencer",
     localField: 'influencerId',
     foreignField: 'influencerId',
-    justOne: true
+    justOne: true,
+    options: {
+      populate: [{ path: 'user' }]
+    }
 });
 
 ReviewSchema.virtual('creator', {
-    ref: "User",
+    ref: "Creator",
     localField: 'creatorId',
     foreignField: 'creatorId',
-    justOne: true
+    justOne: true,
+    options: {
+      populate: [{ path: 'user' }]
+    }
 });
   
 ReviewSchema.virtual('job', {

@@ -149,8 +149,9 @@ export class MeController {
   async getReview(@Param('jobid') jobid) {
 
     const populate = [
-      { path: 'influencer' },
       { path: 'creator' },
+      { path: 'influencer' },
+      { path: 'job' },
     ];
 
     return await this.appService.getReview(jobid, populate);

@@ -173,8 +173,8 @@ export class AppService {
   }
 
   async deleteReview() {
-
-    return await await this.reviewModel.deleteMany({});
+    await this.reviewModel.collection.drop();
+    return 'Review collection dropped successfully';
 
   }
 }
