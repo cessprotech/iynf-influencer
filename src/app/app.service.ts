@@ -151,18 +151,6 @@ export class AppService {
     }
   }
   
-  async getReview(jobid: string, populateOptions: PopulateOptions = []) {
-
-    const review = await this.reviewModel.findOne({ jobId: jobid })
-    .populate(populateOptions);
-    
-    if (!review) {
-      return { message: 'Review not found' };
-    }
-
-    return review;
-  }
-
   async editReview(reviewId: string, reviewDto: any) {
 
     return await this.reviewModel.findOneAndUpdate({ _id: reviewId }, { ...reviewDto }, {
