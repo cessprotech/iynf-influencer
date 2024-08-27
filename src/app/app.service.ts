@@ -156,6 +156,12 @@ export class AppService {
 
   async postReview(createReview: any) {
     try {
+      const check = await this.reviewModel.findOne({ influencerId: createReview.influencerId, jobId: createReview.jobId })
+      
+      if(check !== null){
+        return { message: 'Already made a review, try updating it...' }
+      }
+
       const review =  await this.reviewModel.create(createReview);
          
       return { message: 'review added', review }
