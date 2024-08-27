@@ -35,24 +35,25 @@ ReviewSchema.index({ influencerId: 1});
 ReviewSchema.index({ jobId: 1});
 
 ReviewSchema.virtual('influencer', {
-    ref: "Influencer",
+    ref: 'Influencer',
     localField: 'influencerId',
     foreignField: 'influencerId',
     justOne: true,
     options: {
-      populate: [{ path: 'user' }]
+      populate: { path: 'user' }
     }
 });
 
 ReviewSchema.virtual('creator', {
-    ref: "Creator",
+    ref: 'Creator',
     localField: 'creatorId',
     foreignField: 'creatorId',
     justOne: true,
     options: {
-      populate: [{ path: 'user' }]
+      populate: { path: 'user' }
     }
 });
+  
   
 ReviewSchema.virtual('job', {
   ref: "Job",
