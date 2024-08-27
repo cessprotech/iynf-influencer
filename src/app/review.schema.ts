@@ -20,12 +20,6 @@ export class Review extends Document{
     @Prop({ required: [true, 'creatorId Is Required!'] })
     creatorId: string;
 
-    @Prop({ required: [true, 'Influencer userId Is Required!'] })
-    influencerUserId: string;
-
-    @Prop({ required: [true, 'creator userId Is Required!'] })
-    creatorUserId: string;
-
     @Prop({ required: [true, 'Jobid Is Required!'] })
     jobId: string;
 
@@ -36,20 +30,19 @@ export class Review extends Document{
 const ReviewModelName = Review.name;
 const ReviewSchema = CREATE_SCHEMA<Review>(Review);
 
-
-ReviewSchema.virtual('influencerUserData', {
+ReviewSchema.virtual('influencer', {
     ref: "User",
-    localField: 'influencerUserId',
-    foreignField: 'userId',
-    justOne: true,
-});  
+    localField: 'influencerId',
+    foreignField: 'influencerId',
+    justOne: true
+});
 
-ReviewSchema.virtual('creatorUserData', {
+ReviewSchema.virtual('creator', {
     ref: "User",
-    localField: 'creatorUserId',
-    foreignField: 'userId',
-    justOne: true,
-});  
+    localField: 'creatorId',
+    foreignField: 'creatorId',
+    justOne: true
+});
   
 ReviewSchema.virtual('job', {
   ref: "Job",
