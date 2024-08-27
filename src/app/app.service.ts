@@ -131,6 +131,23 @@ export class AppService {
 
   }
 
+  async updateInfluencerBalance(data:  { influencerId: string, amount: number} ) {
+    const influencer = await this.iamSuspended(data.influencerId);
+
+    let amount = influencer.balance
+    amount += data.amount
+
+    return await this.influencerModel.findOneAndUpdate(
+      { influencerId: data.influencerId },
+      { $set: { balance: amount } },
+      {
+        new: true,
+        runValidators: true
+      }
+    )
+
+  }
+
   remove(id: string) {
     
     return `This action removes a #${id} influencer`;
@@ -157,12 +174,6 @@ export class AppService {
       new: true,
       runValidators: true
     })
-
-  }
-
-  async deleteReview() {
-    await this.reviewModel.collection.drop();
-    return 'Review collection dropped successfully';
 
   }
 }
