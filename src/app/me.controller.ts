@@ -149,8 +149,8 @@ export class MeController {
   async getReview(@Param('jobid') jobid) {
 
     const populate = [
-      { path: 'creator', populate: { path: 'user' } },
-      { path: 'influencer', populate: { path: 'user' } },
+      { path: 'creator' },
+      { path: 'influencer' },
       { path: 'job' }
     ];
 
