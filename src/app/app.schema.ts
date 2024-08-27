@@ -57,7 +57,7 @@ export class Influencer extends Document {
   @Prop({
     default: 0
   })
-  readonly balance: number;
+  balance: number;
 }
 
 const InfluencerModelName = Influencer.name;
