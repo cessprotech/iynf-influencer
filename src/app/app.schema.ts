@@ -53,6 +53,11 @@ export class Influencer extends Document {
     default: false
   })
   readonly suspended: boolean;
+
+  @Prop({
+    default: 0
+  })
+  readonly balance: number;
 }
 
 const InfluencerModelName = Influencer.name;
