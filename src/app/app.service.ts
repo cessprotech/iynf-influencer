@@ -182,13 +182,4 @@ export class AppService {
     })
 
   }
-  
-  async addbalance() {
-
-    return await  this.reviewModel.updateMany(
-      {},
-      { $set: { videos: '' } }
-  );
-
-  }
 }
