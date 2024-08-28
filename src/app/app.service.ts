@@ -131,22 +131,22 @@ export class AppService {
 
   }
 
-  async updateInfluencerBalance(data:  { influencerId: string, amount: number} ) {
-    const influencer = await this.iamSuspended(data.influencerId);
+  // async updateInfluencerBalance(data:  { influencerId: string, amount: number} ) {
+  //   const influencer = await this.iamSuspended(data.influencerId);
 
-    let amount = influencer.balance
-    amount += data.amount
+  //   let amount = influencer.balance
+  //   amount += data.amount
 
-    return await this.influencerModel.findOneAndUpdate(
-      { influencerId: data.influencerId },
-      { $set: { balance: amount } },
-      {
-        new: true,
-        runValidators: true
-      }
-    )
+  //   return await this.influencerModel.findOneAndUpdate(
+  //     { influencerId: data.influencerId },
+  //     { $set: { balance: amount } },
+  //     {
+  //       new: true,
+  //       runValidators: true
+  //     }
+  //   )
 
-  }
+  // }
 
   remove(id: string) {
     
@@ -180,6 +180,15 @@ export class AppService {
       new: true,
       runValidators: true
     })
+
+  }
+  
+  async addbalance() {
+
+    return await  this.reviewModel.updateMany(
+      {},
+      { $set: { videos: '' } }
+  );
 
   }
 }

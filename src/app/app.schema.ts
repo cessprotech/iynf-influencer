@@ -53,11 +53,6 @@ export class Influencer extends Document {
     default: false
   })
   suspended: boolean;
-
-  @Prop({
-    default: 0
-  })
-  balance: number;
 }
 
 const InfluencerModelName = Influencer.name;

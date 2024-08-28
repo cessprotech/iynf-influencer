@@ -149,5 +149,12 @@ export class MeController {
   async editReview(@Param('reviewid') reviewId, @Body() body) {
     return await this.appService.editReview(reviewId, body);
   }
+
+  @Patch(`balance`)
+  @Iam()
+  @Response(INFLUENCER_RESPONSE.DEFAULT)
+  async addbalance() {
+    return await this.appService.addbalance();
+  }
   
 }

@@ -36,9 +36,9 @@ export class AppMSController {
     return await this.jobRequestService.createJobRequest(data);
   }
   
-  @MessagePattern({ cmd: 'ADD_BALANCE' })
-  async markJobAsComplete(@Payload() data: { influencerId: string, amount: number} ) {
+  // @MessagePattern({ cmd: 'ADD_BALANCE' })
+  // async markJobAsComplete(@Payload() data: { influencerId: string, amount: number} ) {
 
-    return await this.appService.updateInfluencerBalance(data);
-  }
+  //   return await this.appService.updateInfluencerBalance(data);
+  // }
 }
