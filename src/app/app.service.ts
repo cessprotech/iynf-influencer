@@ -182,4 +182,28 @@ export class AppService {
     })
 
   }
+
+  async improvisionJobCompleted(datas: any[]) {
+    // Extract influencer IDs from the data
+    const influencerIds = datas.map((data) => data.influencerId);
+  
+    // Fetch the count of completed jobs for each influencer in one go
+    const jobCounts = await this.connection.db.collection('jobs').aggregate([
+      { $match: { influencerId: { $in: influencerIds }, status: 'Completed' } },
+      { $group: { _id: '$influencerId', total: { $sum: 1 } } }
+    ]).toArray();
+  
+    // Create a map of influencerId to jobsCompleted count
+    const jobCountMap = jobCounts.reduce((acc, curr) => {
+      acc[curr._id] = curr.total;
+      return acc;
+    }, {});
+  
+    // Attach the jobsCompleted count to each influencer object
+    datas.forEach((data) => {
+      data.jobsCompleted = jobCountMap[data.influencerId] || 0;
+    });
+  
+    return datas;
+  }
 }

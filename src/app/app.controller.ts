@@ -34,7 +34,7 @@ export class AppController {
 
     paginateOptions.populate = [
       { path: 'user', select: ['firstName', 'lastName', 'avatar', 'country', 'userId'] },
-      { path: 'jobsCompleted' }
+      // { path: 'jobsCompleted' }
     ];
 
     if (Array.isArray(otherQuery.niche) && otherQuery.niche.length > 0) {
@@ -43,7 +43,18 @@ export class AppController {
 
     if (influencerId) otherQuery.influencerId = { ne: influencerId };
 
-    return await this.appService.getAll(otherQuery, paginateOptions);
+    let datas = await this.appService.getAll(otherQuery, paginateOptions);
+
+    // Attach the jobsCompleted count to each influencer object
+    datas.docs = await this.appService.improvisionJobCompleted(datas.docs);
+
+    return {
+      status: 'SUCCESS',
+      message: 'Influencers Data Fetch Successful.',
+      data: {
+        docs: datas.docs
+      }
+    };
   }
 
 
