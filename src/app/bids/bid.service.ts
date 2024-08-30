@@ -61,18 +61,13 @@ export class BidService {
 
   async improvision(bids: any) {
     for (const bid of bids.docs) {
-      const creatorId = bid.job.creatorId;
-
-      console.log('creator Id', creatorId);
-      
+      const creatorId = bid.job.creatorId;      
       
       // Fetch the creator's details
       const creatorDetails = await this.connection.db.collection('users').findOne(
         { creatorId },
         { projection: { firstName: 1, lastName: 1, email: 1, userId: 1 } }
       );
-
-      console.log('creator details', creatorId);
   
       if (creatorDetails) {
         // Attach the creator's details to the job object
