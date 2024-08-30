@@ -98,21 +98,23 @@ export class BidService {
       throw new NotFoundException('Bid Not Found');
     }
 
-    const creatorId = bid.job.creatorId;
+    console.log(bid);
+    
+    // const creatorId = bid.job.creatorId;
 
-    const creator = await this.connection.db.collection('users').findOne(
-      { _id: creatorId },
-      { projection: { firstName: 1, lastName: 1, email: 1 } }
-    );
+    // const creator = await this.connection.db.collection('users').findOne(
+    //   { _id: creatorId },
+    //   { projection: { firstName: 1, lastName: 1, email: 1 } }
+    // );
 
-    // If the creator is found, attach the information to the job object
-    if (creator) {
-      bid.job.creator = {
-        firstName: creator.firstName,
-        lastName: creator.lastName,
-        email: creator.email
-      };
-    }
+    // // If the creator is found, attach the information to the job object
+    // if (creator) {
+    //   bid.job.creator = {
+    //     firstName: creator.firstName,
+    //     lastName: creator.lastName,
+    //     email: creator.email
+    //   };
+    // }
     
     return bid;
   }
