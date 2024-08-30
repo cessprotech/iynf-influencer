@@ -85,9 +85,8 @@ export class MeController {
     let bids = await this.bidService.getAll(otherQuery, paginateOptions);
 
     let data = await this.bidService.improvision(bids);
-    console.log('processed', data);
 
-    return bids
+    return data
     
   }
 
