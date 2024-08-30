@@ -58,6 +58,11 @@ export class BidService {
 
     return await this.bidModel.paginate({...rest, suspended: false }, paginateOptions);
   }
+
+  async improvision(data: any) {
+    // await this.connection.db.collection('users').findOne({ bidId: hired.bidId });
+   
+  }
   
   async getMyBids(query: Record<string, any> = {}, influencerId: string, paginateOptions: PaginateOptions = {}) {
 
