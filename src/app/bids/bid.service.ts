@@ -66,12 +66,13 @@ export class BidService {
       // Fetch the creator's details
       const creatorDetails = await this.connection.db.collection('users').findOne(
         { creatorId },
-        { projection: { firstName: 1, lastName: 1, email: 1, userId: 1, avatar: 1, country: 1 } }
+        { projection: { _id: 1, firstName: 1, lastName: 1, email: 1, userId: 1, avatar: 1, country: 1 } }
       );
   
       if (creatorDetails) {
         // Attach the creator's details to the job object
         bid.job.creatorDetails = {
+          _id: creatorDetails._id,
           firstName: creatorDetails.firstName,
           lastName: creatorDetails.lastName,
           email: creatorDetails.email,
