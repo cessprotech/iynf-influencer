@@ -98,7 +98,7 @@ export class BidService {
       throw new NotFoundException('Bid Not Found');
     }
 
-    console.log(bid);
+    console.log('bid details', bid);
     
     // const creatorId = bid.job.creatorId;
 
