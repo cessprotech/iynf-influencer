@@ -66,7 +66,7 @@ export class BidService {
       // Fetch the creator's details
       const creatorDetails = await this.connection.db.collection('users').findOne(
         { creatorId },
-        { projection: { firstName: 1, lastName: 1, email: 1, userId: 1 } }
+        { projection: { firstName: 1, lastName: 1, email: 1, userId: 1, avatar: 1 } }
       );
   
       if (creatorDetails) {
@@ -75,7 +75,8 @@ export class BidService {
           firstName: creatorDetails.firstName,
           lastName: creatorDetails.lastName,
           email: creatorDetails.email,
-          userId: creatorDetails.userId
+          userId: creatorDetails.userId,
+          avatar: creatorDetails.avatar
         };
       }
     }
