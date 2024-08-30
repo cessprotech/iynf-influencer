@@ -14,12 +14,6 @@ const lookups = {
         foreignField: 'creatorId',
     },
     
-    job: {
-        from: 'jobs',
-        localField: 'jobId',
-        foreignField: 'jobId',
-    },
-    
     jobsCompleted: {
         from: 'jobs',
         localField: 'influencerId',

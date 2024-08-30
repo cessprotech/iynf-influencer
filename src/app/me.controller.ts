@@ -80,7 +80,6 @@ export class MeController {
 
     paginateOptions.populate = [
       { path: 'job' },
-      { path: 'creator' },
     ];
 
     return await this.bidService.getAll(otherQuery, paginateOptions);

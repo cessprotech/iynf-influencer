@@ -92,16 +92,6 @@ BidSchema.virtual('influencer', {
   }
 });
 
-BidSchema.virtual('creator', {
-  ref: "Job",
-  localField: 'jobId',
-  foreignField: 'jobId',
-  justOne: true,
-  options: {
-    populate: [{ path: 'creator' }]
-  }
-});
-
 
 const BidModel = { name: BidModelName, schema: BidSchema };
 
