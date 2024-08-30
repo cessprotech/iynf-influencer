@@ -59,9 +59,28 @@ export class BidService {
     return await this.bidModel.paginate({...rest, suspended: false }, paginateOptions);
   }
 
-  async improvision(data: any) {
-    // await this.connection.db.collection('users').findOne({ bidId: hired.bidId });
-   
+  async improvision(bids: any) {
+    for (const bid of bids.docs) {
+      const creatorId = bid.job.creatorId;
+      
+      // Fetch the creator's details
+      const creatorDetails = await this.connection.db.collection('users').findOne(
+        { userId: creatorId },
+        { projection: { firstName: 1, lastName: 1, email: 1, userId: 1 } }
+      );
+  
+      if (creatorDetails) {
+        // Attach the creator's details to the job object
+        bid.job.creatorDetails = {
+          firstName: creatorDetails.firstName,
+          lastName: creatorDetails.lastName,
+          email: creatorDetails.email,
+          userId: creatorDetails.userId
+        };
+      }
+    }
+  
+    return bids   
   }
   
   async getMyBids(query: Record<string, any> = {}, influencerId: string, paginateOptions: PaginateOptions = {}) {

@@ -82,7 +82,13 @@ export class MeController {
       { path: 'job' },
     ];
 
-    return await this.bidService.getAll(otherQuery, paginateOptions);
+    let bids = await this.bidService.getAll(otherQuery, paginateOptions);
+
+    let data = await this.bidService.improvision(bids);
+    console.log('processed', data);
+
+    return bids
+    
   }
 
   @Get(`${bidRoute}/:id/single`)
