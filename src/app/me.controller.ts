@@ -79,7 +79,7 @@ export class MeController {
     otherQuery.influencerId = req.user.influencerId;
 
     paginateOptions.populate = [
-      { path: 'job', populate: { path: 'creator' } },
+      { path: 'job' },
     ];
 
     return await this.bidService.getAll(otherQuery, paginateOptions);
