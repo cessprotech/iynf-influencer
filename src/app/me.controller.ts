@@ -122,7 +122,7 @@ export class MeController {
 
     paginateOptions.populate = [
       { path: 'job' },
-      { path: 'creatorUserData', select: 'firstName lastName avatar cover' }
+      { path: 'creatorUserData', select: 'firstName lastName avatar cover country' }
     ];
 
     return await this.jobRequestService.getJobRequests(otherQuery, paginateOptions);
