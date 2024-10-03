@@ -88,14 +88,14 @@ export class BidService {
 
   async improvisionTwo(bids: any) {
     for (const bid of bids.docs) {
-      const influencerId = bid.job.influencerId;      
+      const influencerId = bid.influencerId; 
       
       // Fetch the creator's details
       const jobsCompleted = await this.connection.db.collection('jobs').countDocuments(
         { influencerId, completed: true }
       );
   
-      bid.jobsCompleted = jobsCompleted
+      bid.influencer.jobsCompleted = jobsCompleted
     }
   
     return bids   
