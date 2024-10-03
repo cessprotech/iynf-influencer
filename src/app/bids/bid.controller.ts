@@ -38,10 +38,7 @@ export class BidController {
     ];
 
 
-    let bids = await this.bidService.getAll(otherQuery, paginateOptions);
-    let data = await this.bidService.improvisionTwo(bids);
-
-    return data
+    return await this.bidService.getAll(otherQuery, paginateOptions);
   }
 
   @Public()
