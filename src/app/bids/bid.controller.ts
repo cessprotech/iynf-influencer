@@ -34,12 +34,14 @@ export class BidController {
     const { otherQuery, paginateOptions } = QueryOptions(query, true);
     
     paginateOptions.populate = [
-      { path: 'influencer' },
-      // { path: 'jobsCompleted' }
+      { path: 'influencer' }
     ];
 
 
-    return await this.bidService.getAll(otherQuery, paginateOptions);
+    let bids = await this.bidService.getAll(otherQuery, paginateOptions);
+    let data = await this.bidService.improvisionTwo(bids);
+
+    return data
   }
 
   @Public()

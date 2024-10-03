@@ -85,6 +85,21 @@ export class BidService {
   
     return bids   
   }
+
+  async improvisionTwo(bids: any) {
+    for (const bid of bids.docs) {
+      const influencerId = bid.job.influencerId;      
+      
+      // Fetch the creator's details
+      const jobsCompleted = await this.connection.db.collection('jobs').countDocuments(
+        { influencerId, completed: true }
+      );
+  
+      bid.jobsCompleted = jobsCompleted
+    }
+  
+    return bids   
+  }
   
   async getMyBids(query: Record<string, any> = {}, influencerId: string, paginateOptions: PaginateOptions = {}) {
 
