@@ -35,7 +35,7 @@ export class BidController {
     
     paginateOptions.populate = [
       { path: 'influencer' },
-      { path: 'jobsCompleted' }
+      // { path: 'jobsCompleted' }
     ];
 
 
